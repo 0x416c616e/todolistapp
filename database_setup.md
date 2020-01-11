@@ -36,3 +36,9 @@ I made the priority optional, because maybe you have no clear deadline for somet
 
 The reason why I let priority be duplicate (i.e. having two items in a to-do list with priority of 1) is because you might do multiple to-do things at the same time. For example, you might get an oil change and then go to the grocery store, all in the same trip. So having duplicate priority numbers means you can sort of group things. It's also easier than checking if things are duplicate.
 
+## Rename the config file
+
+The todolist.php file stores credentials in database_config.php.
+
+This repo contains a file called database_config.php.EXAMPLE. You will need to rename this file to database_config.php and also put in your database credentials. database_config.php is excluded in the .gitignore so that you can't leak credentials.
+
