@@ -23,13 +23,15 @@ In its simplest form, each item in the list only has two things: a number for a 
 
 This will use CRUD, meaning Create, Read, Update, and Delete. You can add new items to the list, view items on the list, update/edit items (such as changing priority or the description), and removing items once you've finished them.
 
-The app is web-based, and consists of a front-end that uses HTML and CSS, and a back-end consisting of a LAMP server running PHP code and connecting to a MySQL database. 
-
-Currently, the app does not have user authentication. This will be added later. But for now, it's local-only. 
+The app is web-based, and consists of a front-end that uses HTML and CSS, and a back-end consisting of a LAMP server running PHP code and connecting to a MySQL database.  
 
 ## How to use it
 
 Put todolist.php in your htdocs folder on a LAMP server.
+
+Use it like this:
+
+localhost/todolistapp/todolist.php?auth=password
 
 Things this app still needs to get finished:
 
@@ -43,4 +45,4 @@ Things this app still needs to get finished:
 
 **To-do:** come up with instructions for how to make a database/table that is needed for using this app.
 
-**To-do:** add some sort of authentication system, even if it's as simple as requiring that a query string is used when visiting the site.
+**To-do:** improve the authentication system.
