@@ -1,3 +1,11 @@
+
+<?php
+    //disable this in production
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+    //these two lines are only good for debugging/developing
+?>
+
 <!DOCTYPE html>
     <head>
         <title>To-do list</title>
@@ -23,21 +31,25 @@
                 //link for making new to-do items
                 echo "<a href=\"\">Create new</a>";
                 //list of the to-do list items
+                echo "<div>";
                 echo "<ul>";
                 //getting to-do list items from the database
-                if ($result = $conn->query("SELECT todo_item FROM todolist")) {
-                    printf("Select returned %d rows.\n", $result->num_rows);
-                    /* free result set */
+                if ($result = $conn->query("SELECT priority, todo_item, item_id FROM todolist ORDER BY priority")) {
+                    printf("%d items on your to-do list\n", $result->num_rows);
+                    while ($row = $result->fetch_assoc()) {
+                        printf ("<li>%s %s [<a href=\"\">Edit</a>] [<a href=\"\">Delete</a>]</li>\n", $row["priority"], $row["todo_item"]);
+                    }
                     $result->close();
                 }
                 //next should be in a while-database-has-next loop:
-                    echo "<li>1 do something <a href=\"\">Edit</a> <a href=\"\">Delete</a></li>";
+                    //echo "<li>1 do something <a href=\"\">Edit</a> <a href=\"\">Delete</a></li>";
 
 
                 
                 //close the database
-                $mysqli->close();
+                $conn->close();
                 echo "</ul>";
+                echo "</div>";
             } else {
                 //what gets displayed if user is not properly authenticated
                 echo "<h1>Authentication required</h1>";
