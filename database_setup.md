@@ -59,3 +59,18 @@ Verify that it got put into the table:
 SELECT * FROM todolist;
 ```
 
+Try another one:
+
+```
+INSERT INTO todolist (priority, todo_item) VALUES (2, 'get oil change');
+```
+
+Now there will be two rows in the table.
+
+View it again:
+
+```
+SELECT * FROM todolist;
+```
+
+
