@@ -28,7 +28,8 @@ The to-do list app needs a table for the to-do items. They only need a number fo
 ```
 CREATE TABLE todolist(
     priority INT,
-    todo_item VARCHAR(280) NOT NULL
+    todo_item VARCHAR(280) NOT NULL,
+    item_id INT PRIMARY KEY NOT NULL AUTO_INCREMENT
 );
 ```
 
@@ -36,9 +37,25 @@ I made the priority optional, because maybe you have no clear deadline for somet
 
 The reason why I let priority be duplicate (i.e. having two items in a to-do list with priority of 1) is because you might do multiple to-do things at the same time. For example, you might get an oil change and then go to the grocery store, all in the same trip. So having duplicate priority numbers means you can sort of group things. It's also easier than checking if things are duplicate.
 
+item_id is only used by the database and to-do list app software, not the end user. It's a way to uniquely identify items.
+
 ## Rename the config file
 
 The todolist.php file stores credentials in database_config.php.
 
 This repo contains a file called database_config.php.EXAMPLE. You will need to rename this file to database_config.php and also put in your database credentials. database_config.php is excluded in the .gitignore so that you can't leak credentials.
+
+## Putting a sample entry into the to-do list
+
+Use the following query to make a test to-do list item in your to-do list app:
+
+```
+INSERT INTO todolist (priority, todo_item, item_id) VALUES (1, 'get groceries', 1);
+```
+
+Verify that it got put into the table:
+
+```
+SELECT * FROM todolist;
+```
 
