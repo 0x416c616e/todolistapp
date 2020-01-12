@@ -30,7 +30,7 @@
                 }
                 //link for making new to-do items
                 echo <<< EOL
-                <form method="POST" action="create_new.php">
+                <form method="GET" action="create_new.php">
                     Priority:<br>
                     <input type="text" size="2" name="priority"><br>
                     Task:<br>
