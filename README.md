@@ -27,22 +27,12 @@ The app is web-based, and consists of a front-end that uses HTML and CSS, and a 
 
 ## How to use it
 
-Put todolist.php in your htdocs folder on a LAMP server.
+Make a todolist folder in your server's htdocs folder, and then put all the files from this repo in it. 
+
+Go here to learn how to set up the database: [Link](https://github.com/0x416c616e/todolistapp/blob/master/database_setup.md)
 
 Use it like this:
 
+```
 localhost/todolistapp/todolist.php?auth=password
-
-Things this app still needs to get finished:
-
-**To-do**: config files for credentials outside of public htdocs.
-
-**To-do:** gitignore for credential files.
-
-**To-do:** come up with instructures for how to use the credential files.
-
-**To-do:** come up with database structure.
-
-**To-do:** come up with instructions for how to make a database/table that is needed for using this app.
-
-**To-do:** improve the authentication system.
+```
