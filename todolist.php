@@ -10,10 +10,7 @@
             $auth=$_GET["auth"];
             if ($auth=="password") {
                 //database login info
-                //TO-DO: convert database code to PDO (PHP Data Objects)
-                //And use prepared statements
                 include("database_config.php");
-                echo "hello";
                 // Create database connection
                 $conn = new mysqli($servername, $username, $password);
                 // Check database connection
