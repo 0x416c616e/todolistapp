@@ -9,9 +9,10 @@
 <!DOCTYPE html>
     <head>
         <title>To-do list</title>
+        <script src="edit.js"></script>
     </head>
     <body>
-    <header>To-do list</header>
+    <h1>To-do list</h1>
     <main>
         <?php
             //very primitive login system
@@ -26,30 +27,55 @@
                     //exit if error with connecting
                     die("MySQL connection error");
                 } else {
-                    echo "<br>Database connection successful<br>";
+                    echo "<!-- Database connection successful -->";
                 }
-                //link for making new to-do items
+                //form for making new to-do items
                 echo <<< EOL
+                <section>
+                <div style="display: inline-block;">
+                <h2>Create new task</h2><br>
                 <form method="GET" action="create_new.php">
                     Priority:<br>
-                    <input type="text" size="2" name="priority"><br>
-                    Task:<br>
-                    <textarea name="task" rows="4" cols="30"></textarea><br>
+                    <input type="text" size="6" name="priority" id="priority"><br>
+                    Task to create:<br>
+                    <textarea name="task" rows="4" cols="30" id="task"></textarea><br>
                 EOL;
                 echo "<input type=\"hidden\" name=\"auth\" value=\"$auth\">";
                 echo <<< EOL
                 <input type="submit" value="Add task">
+                <button onclick="clearNew()" type="button">Clear</button> 
                 </form>
+                </div>
+                EOL;
+                //form for editing an existing item
+                echo <<< EOL
+                <div style="display: inline-block;">
+                <h2>Edit existing task</h2><br>
+                <form method="GET" action="edit.php">
+                    Task ID:<br>
+                    <input type="text" size="6" name="item_id" id="item_id"><br>
+                    Task to edit:<br>
+                    <textarea name="task" rows="4" cols="30" id="todo_item"></textarea><br>
+                EOL;
+                echo "<input type=\"hidden\" name=\"auth\" value=\"$auth\">";
+                echo <<< EOL
+                <input type="submit" value="Edit task">
+                <button onclick="clearEdit()" type="button">Clear</button>
+                </form>
+                </div>
+                </section>
                 EOL;
                 //list of the to-do list items
+                echo "<h2>To-do list</h2>";
                 echo "<div>";
                 echo "<ul>";
                 //getting to-do list items from the database
                 if ($result = $conn->query("SELECT priority, todo_item, item_id FROM todolist ORDER BY priority")) {
-                    printf("%d items on your to-do list\n", $result->num_rows);
                     while ($row = $result->fetch_assoc()) {
-                        printf ("<li>%s %s [<a href=\"\">Edit</a>] [<a href=\"delete.php?id=%s&auth=%s\">Delete</a>]</li>\n", $row["priority"], $row["todo_item"], $row["item_id"], $auth);
+                        printf ("<li>%s %s [<a onclick=\"putIdInForm(%s, '%s')\" href=\"#\">Edit</a>] [<a href=\"delete.php?id=%s&auth=%s\">Delete</a>]</li>\n",
+                        $row["priority"], $row["todo_item"], $row["item_id"], $row["todo_item"], $row["item_id"], $auth);
                     }
+                    printf("There are %d items on your to-do list\n", $result->num_rows);
                     $result->close();
                 }
                 //close the database
