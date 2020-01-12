@@ -29,7 +29,18 @@
                     echo "<br>Database connection successful<br>";
                 }
                 //link for making new to-do items
-                echo "<a href=\"\">Create new</a>";
+                echo <<< EOL
+                <form method="POST" action="create_new.php">
+                    Priority:<br>
+                    <input type="text" size="2" name="priority"><br>
+                    Task:<br>
+                    <textarea name="task" rows="4" cols="30"></textarea><br>
+                EOL;
+                echo "<input type=\"hidden\" name=\"auth\" value=\"$auth\">";
+                echo <<< EOL
+                <input type="submit" value="Add task">
+                </form>
+                EOL;
                 //list of the to-do list items
                 echo "<div>";
                 echo "<ul>";
