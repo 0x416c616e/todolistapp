@@ -8,16 +8,9 @@ I find myself making to-do lists in text files on my computer a whole lot. I use
 
 A to-do list consists of items. Each item is something you want done. An item can have a Priority and description.
 
-Here are some examples:
+Here's what it looks like:
 
-1. Laundry
-2. Get groceries
-3. Take out trash
-4. Finish database class homework
-5. Install software updates on server
-6. Make doctor appointment
-7. Go to the gym
-8. Check bank statement
+![screenshot](https://github.com/0x416c616e/todolistapp/blob/master/screenshot.PNG)
 
 In its simplest form, each item in the list only has two things: a number for a priority, and a string for a description. You can probably make a more complicated to-do list, but this keeps it simple for now.
 
