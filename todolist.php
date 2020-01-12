@@ -72,8 +72,14 @@
                 //getting to-do list items from the database
                 if ($result = $conn->query("SELECT priority, todo_item, item_id FROM todolist ORDER BY priority")) {
                     while ($row = $result->fetch_assoc()) {
+                        //I was having problem with the single and double quotes that were passed to a js function
+                        $quote_problem = $row["todo_item"];
+                        if (strpos($quote_problem, '&#039;') !== false) {
+                            echo "contains single quote";
+                            $quote_problem = str_replace ('&#039;', '\\&#039;', $quote_problem);
+                        }
                         printf ("<li>%s %s [<a onclick=\"putIdInForm(%s, '%s')\" href=\"#\">Edit</a>] [<a href=\"delete.php?id=%s&auth=%s\">Delete</a>]</li>\n",
-                        $row["priority"], $row["todo_item"], $row["item_id"], $row["todo_item"], $row["item_id"], $auth);
+                        $row["priority"], $row["todo_item"], $row["item_id"], $quote_problem, $row["item_id"], $auth);
                     }
                     printf("There are %d items on your to-do list\n", $result->num_rows);
                     $result->close();

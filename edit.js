@@ -1,3 +1,4 @@
+//for editing 
 function putIdInForm(item_id, todo_item) {
     document.getElementById("item_id").value = item_id;
     document.getElementById("todo_item").value = todo_item;
