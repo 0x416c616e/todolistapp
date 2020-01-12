@@ -5,8 +5,8 @@
 
 
     //get stuff posted from the todolist.php script
-    $item_id=$_GET["item_id"];
-    $task=$_GET["task"];
+    $item_id = htmlentities($_GET["item_id"], ENT_QUOTES);
+    $task = htmlentities($_GET["task"], ENT_QUOTES);
     //to-do: validate input
     
     //connect to database    

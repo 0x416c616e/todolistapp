@@ -1,8 +1,8 @@
 <?php
     //get stuff posted from the todolist.php script
     //when the user submits a new task to put in db
-    $priority=$_GET["priority"];
-    $task=$_GET["task"];
+    $priority = htmlentities($_GET["priority"], ENT_QUOTES);
+    $task = htmlentities($_GET["task"], ENT_QUOTES);
     //to-do: validate input
     
     //put into database    
