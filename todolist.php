@@ -37,15 +37,10 @@
                 if ($result = $conn->query("SELECT priority, todo_item, item_id FROM todolist ORDER BY priority")) {
                     printf("%d items on your to-do list\n", $result->num_rows);
                     while ($row = $result->fetch_assoc()) {
-                        printf ("<li>%s %s [<a href=\"\">Edit</a>] [<a href=\"\">Delete</a>]</li>\n", $row["priority"], $row["todo_item"]);
+                        printf ("<li>%s %s [<a href=\"\">Edit</a>] [<a href=\"delete.php?id=%s&auth=%s\">Delete</a>]</li>\n", $row["priority"], $row["todo_item"], $row["item_id"], $auth);
                     }
                     $result->close();
                 }
-                //next should be in a while-database-has-next loop:
-                    //echo "<li>1 do something <a href=\"\">Edit</a> <a href=\"\">Delete</a></li>";
-
-
-                
                 //close the database
                 $conn->close();
                 echo "</ul>";
