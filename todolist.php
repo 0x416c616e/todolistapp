@@ -75,7 +75,6 @@
                         //I was having problem with the single and double quotes that were passed to a js function
                         $quote_problem = $row["todo_item"];
                         if (strpos($quote_problem, '&#039;') !== false) {
-                            echo "contains single quote";
                             $quote_problem = str_replace ('&#039;', '\\&#039;', $quote_problem);
                         }
                         printf ("<li>%s %s [<a onclick=\"putIdInForm(%s, '%s')\" href=\"#\">Edit</a>] [<a href=\"delete.php?id=%s&auth=%s\">Delete</a>]</li>\n",
