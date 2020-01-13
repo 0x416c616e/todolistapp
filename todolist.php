@@ -111,6 +111,7 @@
                     $today_var = $today_row["today_range"];
                     echo <<< EOL
                         <h2>Today's priorities:</h2>
+                        <p>Do up to and including the following number:</p>
                         <form method="GET" action="today.php">
                             <input type="text" name="today_range" value="$today_var">
                             <input type="hidden" name="mode" value="$mode">
@@ -130,7 +131,13 @@
                             if (strpos($quote_problem, '&#039;') !== false) {
                                 $quote_problem = str_replace ('&#039;', '\\&#039;', $quote_problem);
                             }
-                            printf ("<li>%s %s [<a onclick=\"putIdInForm(%s, %s, '%s'); makeSureEditVisible();\" href=\"#\">Edit</a>] [<a onclick=\"confirmDeletion(%s, '%s', '$mode', '$quote_problem')\" href=\"#\">Delete</a>]</li>\n",
+                            //highlight if part of today's priorities
+                            $highlight_style = "";
+                            if ($row["priority"] <= intval($today_var)) {
+                                $highlight_style = "class='highlight_priority'";
+                            }
+                            
+                            printf ("<li><p style=\"display: inline;\" $highlight_style>%s %s </p>[<a onclick=\"putIdInForm(%s, %s, '%s'); makeSureEditVisible();\" href=\"#\">Edit</a>] [<a onclick=\"confirmDeletion(%s, '%s', '$mode', '$quote_problem')\" href=\"#\">Delete</a>]</li>\n",
                             $row["priority"], $row["todo_item"],
                             $row["priority"], $row["item_id"], $quote_problem,
                             $row["item_id"], $auth);
@@ -148,8 +155,8 @@
                 }
             ?>
         </main>
+        <footer>
+            Made by Alan | <a href="https://saintlouissoftware.com">Saint Louis Software</a> | <a href="https://github.com/0x416c616e">GitHub</a>
+        </footer>
     </body>
-    <footer>
-        Made by Alan | <a href="https://saintlouissoftware.com">Saint Louis Software</a> | <a href="https://github.com/0x416c616e">GitHub</a>
-    </footer>
 </html>
