@@ -52,8 +52,9 @@
                 <div style="display: inline-block;">
                 <h2>Edit existing task</h2><br>
                 <form method="GET" action="edit.php">
-                    Task ID:<br>
-                    <input type="text" size="6" name="item_id" id="item_id"><br>
+                    Priority:<br>
+                    <input type="text" size="6" name="priority_edit" id="priority_edit"><br>
+                    <input type="text" size="6" name="item_id" id="item_id" style="display:none;">
                     Task to edit:<br>
                     <textarea name="task" rows="4" cols="30" id="todo_item"></textarea><br>
                 EOL;
@@ -77,8 +78,10 @@
                         if (strpos($quote_problem, '&#039;') !== false) {
                             $quote_problem = str_replace ('&#039;', '\\&#039;', $quote_problem);
                         }
-                        printf ("<li>%s %s [<a onclick=\"putIdInForm(%s, '%s')\" href=\"#\">Edit</a>] [<a href=\"delete.php?id=%s&auth=%s\">Delete</a>]</li>\n",
-                        $row["priority"], $row["todo_item"], $row["item_id"], $quote_problem, $row["item_id"], $auth);
+                        printf ("<li>%s %s [<a onclick=\"putIdInForm(%s, %s, '%s')\" href=\"#\">Edit</a>] [<a href=\"delete.php?id=%s&auth=%s\">Delete</a>]</li>\n",
+                        $row["priority"], $row["todo_item"],
+                        $row["priority"], $row["item_id"], $quote_problem,
+                        $row["item_id"], $auth);
                     }
                     printf("There are %d items on your to-do list\n", $result->num_rows);
                     $result->close();
