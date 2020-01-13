@@ -5,7 +5,8 @@
     
     $conn = new mysqli($servername, $username, $password, $databasename);
     $item_id = $_GET["id"];
+    $mode = $_GET["mode"];
     $conn->query("DELETE FROM todolist WHERE item_id = $item_id");
-    $redirect = "Location: todolist.php?auth=$pass";
+    $redirect = "Location: todolist.php?auth=$pass&mode=$mode";
     header($redirect);
 ?>

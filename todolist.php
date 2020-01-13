@@ -12,12 +12,13 @@
         <script src="edit.js"></script>
         <script src="toggle.js"></script>
         <?php
-            $mode = @($_GET["mode"] == "dark");
+            $mode = @($_GET["mode"]);
             if ($mode == "dark") {
                 echo <<< EOL
                     <link rel="stylesheet" type="text/css" href="darkmode.css">
                 EOL;
             } else {
+                $mode = "light";
                 echo <<< EOL
                     <link rel="stylesheet" type="text/css" href="lightmode.css">  
                 EOL;
@@ -49,6 +50,7 @@
                         echo "<!-- Database connection successful -->";
                     }
                     //form for making new to-do items
+                    //including light mode and dark mode buttons
                     echo <<< EOL
                     <section>
                         <form action="todolist.php" style="display:inline-block;">
@@ -68,6 +70,7 @@
                             <h2>Create new task</h2><br>
                             Priority:<br>
                             <input type="text" size="6" name="priority" id="priority"><br>
+                            <input type="hidden" name="mode" value="$mode">
                             Task to create:<br>
                             <textarea name="task" rows="4" cols="30" id="task"></textarea><br>
                     EOL;
@@ -86,6 +89,7 @@
                             <h2>Edit existing task</h2><br>
                             Priority:<br>
                             <input type="text" size="6" name="priority_edit" id="priority_edit"><br>
+                            <input type="hidden" name="mode" value="$mode">
                             <input type="text" size="6" name="item_id" id="item_id" style="display:none;">
                             Task to edit:<br>
                             <textarea name="task" rows="4" cols="30" id="todo_item"></textarea><br>
@@ -110,7 +114,7 @@
                             if (strpos($quote_problem, '&#039;') !== false) {
                                 $quote_problem = str_replace ('&#039;', '\\&#039;', $quote_problem);
                             }
-                            printf ("<li>%s %s [<a onclick=\"putIdInForm(%s, %s, '%s')\" href=\"#\">Edit</a>] [<a href=\"delete.php?id=%s&auth=%s\">Delete</a>]</li>\n",
+                            printf ("<li>%s %s [<a onclick=\"putIdInForm(%s, %s, '%s')\" href=\"#\">Edit</a>] [<a href=\"delete.php?id=%s&auth=%s&mode=$mode\">Delete</a>]</li>\n",
                             $row["priority"], $row["todo_item"],
                             $row["priority"], $row["item_id"], $quote_problem,
                             $row["item_id"], $auth);

@@ -3,6 +3,7 @@
     //when the user submits a new task to put in db
     $priority = htmlentities($_GET["priority"], ENT_QUOTES);
     $task = htmlentities($_GET["task"], ENT_QUOTES);
+    $mode = $_GET["mode"];
     //to-do: validate input
     
     //put into database    
@@ -14,6 +15,6 @@
     $new_conn->close();
 
     //redirect to todolist.php with auth
-    $redirect = "Location: todolist.php?auth=$pass";
+    $redirect = "Location: todolist.php?auth=$pass&mode=$mode";
     header($redirect);
 ?>

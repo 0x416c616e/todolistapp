@@ -8,6 +8,7 @@
     $item_id = htmlentities($_GET["item_id"], ENT_QUOTES);
     $task = htmlentities($_GET["task"], ENT_QUOTES);
     $priority_edit = htmlentities($_GET["priority_edit"], ENT_QUOTES);
+    $mode = $_GET["mode"];
     //to-do: validate input
     
     //connect to database
@@ -23,6 +24,6 @@
     $edit_conn->close();
 
     //redirect to todolist.php with auth
-    $redirect = "Location: todolist.php?auth=$pass";
+    $redirect = "Location: todolist.php?auth=$pass&mode=$mode";
     header($redirect);
 ?>
