@@ -112,6 +112,8 @@
                         <h2>Today's priorities:</h2>
                         <form method="GET" action="today.php">
                             <input type="text" name="today_range" value="$today_var">
+                            <input type="hidden" name="mode" value="$mode">
+                            <input type="hidden" name="auth" value=$auth>
                             <input type="submit" value="Update">
                         </form>
                     EOL;
