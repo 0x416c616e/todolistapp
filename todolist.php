@@ -11,6 +11,18 @@
         <title>To-do list</title>
         <script src="edit.js"></script>
         <script src="toggle.js"></script>
+        <?php
+            $mode = @($_GET["mode"] == "dark");
+            if ($mode == "dark") {
+                echo <<< EOL
+                    <link rel="stylesheet" type="text/css" href="darkmode.css">
+                EOL;
+            } else {
+                echo <<< EOL
+                    <link rel="stylesheet" type="text/css" href="lightmode.css">  
+                EOL;
+            }
+        ?>
     </head>
     <body>
         <header>
@@ -23,7 +35,7 @@
         <main>
             <?php
                 //very primitive login system
-                $auth=$_GET["auth"];
+                $auth=@($_GET["auth"]);
                 if ($auth=="password") {
                     //database login info
                     include("database_config.php");
@@ -39,6 +51,17 @@
                     //form for making new to-do items
                     echo <<< EOL
                     <section>
+                        <form action="todolist.php" style="display:inline-block;">
+                            <input type="hidden" name="auth" value="$auth">
+                            <input type="hidden" name="mode" value="dark">
+                            <button>Dark Mode</button>
+                        </form>
+                        <form action="todolist.php" style="display:inline-block;">
+                            <input type="hidden" name="auth" value="$auth">
+                            <input type="hidden" name="mode" value="light">
+                            <button>Light Mode</button>
+                        </form><br><br>
+
                     <div style="display: block;">
                         <button onclick="toggleNewTask()" style="top: 0;"> Create New Task </button>
                         <form method="GET" action="create_new.php" id="new_task_form" style="display:none;">
