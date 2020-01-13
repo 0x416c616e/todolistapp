@@ -89,7 +89,9 @@ So if your to-do list looks like this:
 
 Then you can do something like this:
 
-Today's priorities: 1-300
+Today's priorities: 300
+
+That means anything with a priority number less than or equal to 300. The day's priorities will be highlighted in green to make them stand out from farther-off priorities. 
 
 The reason why I use big and spaced apart numbers in the priority list is because it makes it easier to insert new items in between them. 
 
@@ -109,7 +111,7 @@ You'll really only be using a single row in the entire table.
 Now add the single row that will be used for this feature:
 
 ```
-INSERT INTO today (today_range, today_id) VALUES ('0-0', 123);
+INSERT INTO today (today_range, today_id) VALUES ('0', 123);
 ```
 
 Verify that you did it correctly with the following:
@@ -117,3 +119,4 @@ Verify that you did it correctly with the following:
 ```
 SELECT * FROM today;
 ```
+
