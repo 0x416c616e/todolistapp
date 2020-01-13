@@ -86,7 +86,7 @@
                     //form for editing an existing item
                     echo <<< EOL
                     <div style="display: block;">
-                        <button onclick="toggleEditTask()"> Edit existing Task </button><br>
+                        <button onclick="toggleEditTask()" style="display:none;"> Edit existing Task </button><br>
                         <form method="GET" action="edit.php" id="edit_task_form" style="display:none;">
                             <h2>Edit existing task</h2><br>
                             Priority:<br>
