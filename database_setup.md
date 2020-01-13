@@ -73,4 +73,47 @@ View it again:
 SELECT * FROM todolist;
 ```
 
+## Making the second table: today
 
+There is a section in the to-do list that will list what today's priorities are. Items in the to-do list have a numeric priority field.
+
+So if your to-do list looks like this:
+
+- 1 do something
+- 40 do something else
+- 70 do another thing
+- 100 study for test
+- 160 something else
+- 300 go to grocery store
+- 400 go to hardware store
+
+Then you can do something like this:
+
+Today's priorities: 1-300
+
+The reason why I use big and spaced apart numbers in the priority list is because it makes it easier to insert new items in between them. 
+
+For instance, if you wanted to put "go to mechanic" in between "do something" and "do something else", you could give it a priority of 20.
+
+Create a new table called today:
+
+```
+CREATE TABLE today(
+    today_range VARCHAR(64),
+    today_id INT PRIMARY KEY NOT NULL AUTO_INCREMENT
+);
+```
+
+You'll really only be using a single row in the entire table. 
+
+Now add the single row that will be used for this feature:
+
+```
+INSERT INTO today (today_range, today_id) VALUES ('0-0', 123);
+```
+
+Verify that you did it correctly with the following:
+
+```
+SELECT * FROM today;
+```

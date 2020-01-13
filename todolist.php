@@ -104,6 +104,17 @@
                     </div>
                     </section>
                     EOL;
+                    //today's priorities section and db stuff
+                    $today = $conn->query("SELECT today_range FROM today WHERE today_id = 123 LIMIT 1");
+                    $today_row = $today->fetch_assoc();
+                    $today_var = $today_row["today_range"];
+                    echo <<< EOL
+                        <h2>Today's priorities:</h2>
+                        <form method="GET" action="today.php">
+                            <input type="text" name="today_range" value="$today_var">
+                            <input type="submit" value="Update">
+                        </form>
+                    EOL;
                     //list of the to-do list items
                     echo "<h2>To-do list</h2>";
                     echo "<div>";
