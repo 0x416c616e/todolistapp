@@ -11,6 +11,7 @@
         <title>To-do list</title>
         <script src="edit.js"></script>
         <script src="toggle.js"></script>
+        <script src="confirm_deletion.js"></script>
         <?php
             $mode = @($_GET["mode"]);
             if ($mode == "dark") {
@@ -129,7 +130,7 @@
                             if (strpos($quote_problem, '&#039;') !== false) {
                                 $quote_problem = str_replace ('&#039;', '\\&#039;', $quote_problem);
                             }
-                            printf ("<li>%s %s [<a onclick=\"putIdInForm(%s, %s, '%s'); makeSureEditVisible();\" href=\"#\">Edit</a>] [<a href=\"delete.php?id=%s&auth=%s&mode=$mode\">Delete</a>]</li>\n",
+                            printf ("<li>%s %s [<a onclick=\"putIdInForm(%s, %s, '%s'); makeSureEditVisible();\" href=\"#\">Edit</a>] [<a onclick=\"confirmDeletion(%s, '%s', '$mode', '$quote_problem')\" href=\"#\">Delete</a>]</li>\n",
                             $row["priority"], $row["todo_item"],
                             $row["priority"], $row["item_id"], $quote_problem,
                             $row["item_id"], $auth);
